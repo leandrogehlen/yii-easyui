@@ -1,8 +1,8 @@
 <?php
 
-Yii::import('ext.yii-easyui.widgets.EuiInput');
+Yii::import('ext.yii-easyui.widgets.EuiValidatebox');
 
-class EuiSearchbox extends EuiInput
+class EuiSearchbox extends EuiValidatebox
 {
 	/**	 
 	 * @var string The prompt message to be displayed in input box
