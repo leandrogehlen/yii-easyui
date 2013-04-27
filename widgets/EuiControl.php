@@ -25,24 +25,6 @@ abstract class EuiControl extends EuiWidget
 	public $top;
 	
 	public $onclick;
-	
-	
-	/*public function toArray()
-	{
-		$this->style = CHtml::cssEncode(array(
-			'width'=>$this->width,
-			'height'=>$this->height,
-			'left'=>$this->left,
-			'top'=>$this->top,		
-		));
-					
-		$props = parent::toArray();
-		unset($props['width']);
-		unset($props['height']);
-		unset($props['left']);
-		unset($props['width']);
-		return $props;		
-	}*/
 		
 }
 

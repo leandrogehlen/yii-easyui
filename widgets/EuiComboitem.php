@@ -16,9 +16,7 @@ class EuiComboitem extends EuiWidget
 	
 	
 	public function run()
-	{
-		$options = $this->toArray();
-		unset($options['description']);			
-		echo CHtml::tag('option', $options, $this->description)."\n";
+	{				
+		echo CHtml::tag('option', array('value'=> $this->value), $this->description)."\n";
 	}	
 }

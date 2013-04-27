@@ -34,7 +34,7 @@ class EuiLayout extends EuiWidget {
 	 */
 	public function run()	
 	{				
-		echo CHtml::openTag('div', $this->toArray())."\n";
+		echo CHtml::openTag('div', $this->toOptions())."\n";
 					
 		foreach ($this->regions as $region)
 			$region->run();		

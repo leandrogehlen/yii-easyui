@@ -110,7 +110,7 @@ class EuiContainer extends EuiControl {
 	
 	public function run()
 	{	
-		$options = $this->toArray();
+		$options = $this->toOptions();
 		unset($options['content']);
 		unset($options['inline']);
 		

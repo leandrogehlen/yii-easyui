@@ -47,7 +47,7 @@ class EuiCalendar extends EuiControl
 	
 	public function getCssClass()
 	{
-		return 'easyui-slider';
+		return 'easyui-calendar';
 	}		
 }
 ?>

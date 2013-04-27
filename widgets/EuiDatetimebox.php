@@ -1,6 +1,6 @@
 <?php
 
-Yii::import('ext.easyui.widgets.EuiDatebox');
+Yii::import('ext.yii-easyui.widgets.EuiDatebox');
 
 class EuiDatetimebox extends EuiDatebox
 {

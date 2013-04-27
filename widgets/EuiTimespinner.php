@@ -1,6 +1,6 @@
 <?php
 
-Yii::import('ext.easyui.widgets.EuiSpinner');
+Yii::import('ext.yii-easyui.widgets.EuiSpinner');
 
 class EuiTimespinner extends EuiSpinner
 {	

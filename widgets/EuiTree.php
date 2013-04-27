@@ -59,7 +59,7 @@ class EuiTree extends EuiContainer {
 	 */			
 	public function run()
 	{
-		echo CHtml::openTag('ul', $this->toArray());
+		echo CHtml::openTag('ul', $this->toOptions());
 		echo CHtml::closeTag('ul')."\n";
 	}
 }

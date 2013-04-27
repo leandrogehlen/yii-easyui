@@ -1,7 +1,7 @@
 <?php
 
-Yii::import('ext.easyui.widgets.EuiDataGrid');
-Yii::import('ext.easyui.widgets.EuiDataColumn');
+Yii::import('ext.yii-easyui.widgets.EuiDataGrid');
+Yii::import('ext.yii-easyui.widgets.EuiDataColumn');
 
 
 class EuiCombogrid extends EuiDataGrid
@@ -18,7 +18,7 @@ class EuiCombogrid extends EuiDataGrid
 	 */
 	public $validType;
 	
-	/**
+	/**system.db.ar.CActiveRecord
 	 * @var number Delay to validate from the last inputting value
 	 */
 	public $delay;
@@ -62,7 +62,7 @@ class EuiCombogrid extends EuiDataGrid
 	/**	 
 	 * @var string Defines how to select the local data when 'mode' is set to 'local'. Return true to select the row.
 	 */
-	public $filter;	
+	public $filter;		
 				
 					
 	protected function registerColumnsScript()
@@ -70,12 +70,10 @@ class EuiCombogrid extends EuiDataGrid
 		$js = array();
 		foreach ($this->columns as $col)
 		{
-			$cfg = $col->toArray();
-			unset($cfg['id']); 		
-			$js[] = $cfg;
+			$js[] = $col->toArray();									
 		}		
 								
-		$js = EuiJavaScript::encodeId($this->getId()).'.combogrid({columns:['.CJavaScript::encode($js).']});';				
+		$js = EuiJavaScript::encodeId($this->getId()).'.combogrid({columns:['.CJavaScript::jsonEncode($js).']});';				
 		Yii::app()->getClientScript()->registerScript($this->getId(), $js);	
 	}
 	
@@ -87,6 +85,6 @@ class EuiCombogrid extends EuiDataGrid
 	public function run()
 	{						
 		$this->registerColumnsScript();		
-		echo CHtml::Tag('input', $this->toArray());	
+		echo CHtml::Tag('input', $this->toOptions());	
 	}
 }

@@ -41,7 +41,7 @@ class EuiTabs extends EuiControl {
 	 */
 	public function run()
 	{
-		echo CHtml::openTag('div', $this->toArray())."\n";	
+		echo CHtml::openTag('div', $this->toOptions())."\n";	
 		foreach ($this->pages as $page)
 			$page->run();				
 		echo CHtml::closeTag('div')."\n";	

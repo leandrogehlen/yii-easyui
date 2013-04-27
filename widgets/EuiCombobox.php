@@ -76,7 +76,7 @@ class EuiCombobox extends EuiValidatebox
 		if (empty($this->options))
 			parent::run();
 		else {
-			$options = $this->toArray();
+			$options = $this->toOptions();
 						
 			echo CHtml::openTag('select', $options)."\n";			
 			foreach ($this->options as $item)

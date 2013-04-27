@@ -63,11 +63,17 @@ class EuiPagination extends EuiWidget {
 	}
 	
 	function run() {
-		$options = $this->toArray();
-		
+		$options = $this->toOptions();
 		unset($options['buttons']);
-		$options['data-options'] =  "buttons:".CJavaScript::encode($this->buttons);
 		
+		if ($this->buttons)		
+			$btns = "buttons:".CJavaScript::encode($this->buttons);		
+										
+		if (isset($options['data-options']))
+			$options['data-options'] = $btns .",". $options['data-options'];
+		else 						
+			$options['data-options'] = $btns;
+				
 		echo CHtml::Tag('div', $options)."\n";		
 	}
 	

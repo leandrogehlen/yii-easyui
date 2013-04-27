@@ -22,7 +22,7 @@ class EuiLinkbutton extends EuiButton
 	
 	public function run()
 	{						
-		$options = $this->toArray();
+		$options = $this->toOptions();
 		unset($options['text']);
 		unset($options['inline']);																				
 		unset($options['url']);

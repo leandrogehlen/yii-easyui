@@ -49,11 +49,11 @@ class EuiMenuitem extends EuiContainer
 			echo CHtml::Tag('div', array('class'=>'menu-sep'), '')."\n";
 		
 		else if (empty($this->items))
-			echo CHtml::Tag('div', $this->toArray(), $this->text)."\n";
+			echo CHtml::Tag('div', $this->toOptions(), $this->text)."\n";
 		
 		else {
 			echo CHtml::openTag('div')."\n";
-			echo CHtml::Tag('span', $this->toArray(), $this->text)."\n";
+			echo CHtml::Tag('span', $this->toOptions(), $this->text)."\n";
 			echo CHtml::openTag('div')."\n";
 			$this->renderItems();
 			echo CHtml::closeTag('div')."\n";

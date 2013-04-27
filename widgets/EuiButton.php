@@ -21,7 +21,7 @@ class EuiButton extends EuiControl
 						
 	public function run()
 	{
-		$options = $this->toArray();											
+		$options = $this->toOptions();											
 		unset($options['text']);		
 		echo CHtml::Tag('button', $options, CHtml::encode($this->text))."\n";		
 	}	

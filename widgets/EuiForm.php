@@ -16,7 +16,7 @@ class EuiForm extends EuiContainer
 	public function run()
 	{		
 		echo CHtml::openTag('div', array('class'=>'form'))."\n";
-		echo CHtml::openTag('form', $this->toArray())."\n";									
+		echo CHtml::openTag('form', $this->toOptions())."\n";									
 
 		foreach ($this->items as $item) 
 		{

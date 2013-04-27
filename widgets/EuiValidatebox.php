@@ -38,7 +38,12 @@ class EuiValidatebox extends EuiControl
 	public function getCssClass()
 	{
 		return 'easyui-validatebox';
-	}			
+	}
+
+	public function run() 
+	{
+		echo CHtml::Tag('input', $this->toOptions())."\n";
+	}
 }
 
 ?>

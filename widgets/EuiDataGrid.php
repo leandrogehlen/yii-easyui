@@ -193,7 +193,7 @@ class EuiDataGrid extends EuiControl
 	 */
 	public function run()
 	{									 				
-		$options = $this->toArray();
+		$options = $this->toOptions();
 		$jsconfig = array(			
 			'frozenColumns'=>$this->frozenColumnsToArray(),
 			'pageList'=>array(20, 25)			

@@ -18,8 +18,7 @@ class EuiProgressbar extends EuiControl
 	{
 		return 'easyui-progressbar';
 	}
-	
-	
+		
 }
 
 ?>

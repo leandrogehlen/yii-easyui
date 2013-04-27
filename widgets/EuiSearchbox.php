@@ -32,7 +32,7 @@ class EuiSearchbox extends EuiValidatebox
 				
 	public function run()
 	{
-		$options = $this->toArray();
+		$options = $this->toOptions();
 		$options['id'] = $this->id;
 		
 		if (is_array($this->menu)){

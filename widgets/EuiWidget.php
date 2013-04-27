@@ -39,8 +39,7 @@ abstract class EuiWidget extends CWidget {
 			return implode(',', $es);
 		else
 			return null;
-	}
-	
+	}			
 	
 	protected function generateId()
 	{
@@ -111,7 +110,7 @@ abstract class EuiWidget extends CWidget {
 			$item = Yii::createComponent($item, $this);
 																		
 			$items[$i]= $item;
-			$item->init();																			
+			$item->init();												
 		}
 		return $items;
 	}
@@ -130,8 +129,7 @@ abstract class EuiWidget extends CWidget {
 	 */
 	public function toArray()
 	{		    	
-		$props = array();
-		$options = array();
+		$props = array();		
 				
 		foreach ($this as $key => $value)
 		{
@@ -139,28 +137,37 @@ abstract class EuiWidget extends CWidget {
 				continue;		
 				
 			if (!$this->isInvalidProperty($key))							
-        		$options[$key] = $value;					
+        		$props[$key] = $value;					
+		}		
+		
+		unset($props['skin']);
+		unset($props['cssClass']);		
+								 		 		
+		return $props;
+	}
+
+	public function toOptions() 
+	{		
+		$options = array();
+		$props = $this->toArray();
+		
+		if ($this->getCssClass())
+			$options['class'] = $this->getCssClass();
+			
+		if (isset($props['style']))
+		{	
+			$options['style'] = $props['style'];
+			unset($props['style']);
 		}
 				
-		if ($this->getCssClass())
-			$props['class'] = $this->getCssClass();
-		 								
-		if (isset($options['style']))
-			$props['style'] = $options['style'];
-		
-		unset($options['skin']);
-		unset($options['cssClass']);
-		unset($options['style']);
-		
-		$props['id'] = $this->getId();
-		$props['data-options'] = $this->optionsEncode($options);
-		 		 		
-		return $props;
-	}	
+		$options['id'] = $this->getId();
+		$options['data-options'] = $this->optionsEncode($props);
+		return $options;		
+	}
 	
 	public function run()
 	{						
-		echo CHtml::Tag('div', $this->toArray())."\n";
+		echo CHtml::Tag('div', $this->toOptions())."\n";
 	}
 }
 
