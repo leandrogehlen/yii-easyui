@@ -157,7 +157,7 @@ class EuiDataGrid extends EuiControl
 		echo CHtml::openTag('tr')."\n";
 		
 		foreach ($this->columns as $col)	
-			echo CHtml::Tag('th', $col->toArray(), $col->title)."\n";
+			echo CHtml::Tag('th', $col->toOptions(), $col->title)."\n";
 								
 		echo CHtml::closeTag('tr')."\n";
 		echo CHtml::closeTag('thead')."\n";		

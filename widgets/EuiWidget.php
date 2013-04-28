@@ -65,9 +65,13 @@ abstract class EuiWidget extends CWidget {
 	 * Add property of self class to ignored list  
 	 * @param mixed $props property name or arry of property name
 	 */
-	protected function addInvalidProperties(array $props)
+	protected function addInvalidProperties($props)
 	{		
-		$this->_invalidProperties = array_merge($this->_invalidProperties, $props);				
+		if (is_array($props))
+			$this->_invalidProperties = array_merge($this->_invalidProperties, $props);
+		else
+			$this->_invalidProperties[] = $props;
+			 				
 	}	
 	
 	/**

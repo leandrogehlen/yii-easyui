@@ -1,6 +1,6 @@
 <?php 
 
-Yii::import('ext.easyui.widgets.EuiContainer');
+Yii::import('ext.yii-easyui.widgets.EuiContainer');
 
 class EuiTree extends EuiContainer {
 	
