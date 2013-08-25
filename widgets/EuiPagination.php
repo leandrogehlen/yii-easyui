@@ -74,7 +74,8 @@ class EuiPagination extends EuiWidget {
 		else 						
 			$options['data-options'] = $btns;
 				
-		echo CHtml::Tag('div', $options)."\n";		
+		echo CHtml::openTag('div', $options);
+		echo CHtml::closeTag('div');
 	}
 	
 }

@@ -171,7 +171,8 @@ abstract class EuiWidget extends CWidget {
 	
 	public function run()
 	{						
-		echo CHtml::Tag('div', $this->toOptions())."\n";
+		echo CHtml::openTag('div', $this->toOptions());
+		echo CHtml::closeTag('div');
 	}
 }
 

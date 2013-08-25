@@ -57,7 +57,8 @@ class EuiCombotree extends EuiContainer {
 		
 	public function run()
 	{
-		echo CHtml::tag('select', $this->toOptions());		
+		echo CHtml::openTag('select', $this->toOptions());
+		echo CHtml::closeTag('select');
 	}
 }
 
