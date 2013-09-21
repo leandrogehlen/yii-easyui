@@ -2,6 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiControl');
 Yii::import('ext.yii-easyui.widgets.EuiDataColumn');
+Yii::import('ext.yii-easyui.widgets.EuiLinkbutton');
 
 class EuiDataGrid extends EuiControl 
 {
@@ -168,11 +169,18 @@ class EuiDataGrid extends EuiControl
 	 */
 	protected function initToolbar()
 	{		
-		if (!empty($this->toolbar))
-		{			
-			$this->toolbar = $this->prepareConfig($this->toolbar, 'EuiToolbar');				
-			$this->toolbar = Yii::createComponent($this->toolbar, $this);
-			$this->toolbar->init();
+		if (!empty($this->toolbar) && is_array($this->toolbar))
+		{	
+			$tbar = array();			
+			foreach ($this->toolbar as $key => $value) 
+			{
+				$item = $this->prepareConfig($value, 'EuiLinkbutton');
+				$item = Yii::createComponent($item, $this);
+				$item->init();						
+								
+				$tbar[$key] = $item->toArray();
+			}	
+			$this->toolbar = "js:".CJavaScript::encode($tbar);
 		}													
 	}	
 	
@@ -181,8 +189,8 @@ class EuiDataGrid extends EuiControl
 	 */
 	public function init()
 	{
-		parent::init();					
-		$this->initToolbar();
+		parent::init();
+		$this->initToolbar();					
 		$this->columns = $this->initCollection($this->columns, 'EuiDataColumn');
 		$this->frozenColumns = $this->initCollection($this->frozenColumns, 'EuiDataColumn');		
 	}
@@ -194,29 +202,23 @@ class EuiDataGrid extends EuiControl
 	public function run()
 	{									 				
 		$options = $this->toOptions();
-		$jsconfig = array(			
+		$config = array(			
 			'frozenColumns'=>$this->frozenColumnsToArray(),
 			'pageList'=>array(20, 25)			
 		);
 		
 		if (isset($this->loadFilter))
 		{
-			$jsconfig['loadFilter'] = 'js:'.$this->loadFilter;
+			$config['loadFilter'] = 'js:'.$this->loadFilter;
 			unset($options['loadFilter']);
 		}
-						
+										
 		$script = EuiJavaScript::encodeId($this->id).".datagrid(\n";	
-		$script .= CJavaScript::encode($jsconfig)."\n";			 					
+		$script .= CJavaScript::encode($config)."\n";			 					
 		$script .= ");\n";
-		
-		Yii::app()->getClientScript()->registerScript($this->getId(), $script);				
-					
-		if (is_object($this->toolbar))
-		{
-			$this->toolbar->run();
-			$options['toolbar'] = '#'.$this->toolbar->id;
-		}
-											
+								
+		Yii::app()->getClientScript()->registerScript($this->getId(), $script);
+													
 		echo CHtml::openTag('table', $options)."\n";
 		$this->renderColumns();				
 		echo CHtml::closeTag('table')."\n";		

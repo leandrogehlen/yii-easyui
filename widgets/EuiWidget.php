@@ -28,9 +28,13 @@ abstract class EuiWidget extends CWidget {
 		{
 			if (is_bool($v))
 				$v = $v? 'true' : 'false';											
-			else if (is_string($v))
-				$v = "'".$v."'";
-				
+			else if (is_string($v)) {
+				if (strpos($v, 'js:') === 0) 
+					$v = substr($v, 3);
+				else 
+					$v = "'".$v."'";			
+			}
+											
 			if ($v !== null)
 				$es[] = $i.':'.$v;
 		}
