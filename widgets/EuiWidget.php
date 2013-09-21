@@ -29,7 +29,7 @@ abstract class EuiWidget extends CWidget {
 			if (is_bool($v))
 				$v = $v? 'true' : 'false';	
 			else if (is_array($v))
-				$v = CJavaScript::encode($v);										
+				$v = !empty($v) ? CJavaScript::encode($v) : null;										
 			else if (is_string($v)) {
 				if (strpos($v, 'js:') === 0) 
 					$v = substr($v, 3);
@@ -151,7 +151,8 @@ abstract class EuiWidget extends CWidget {
 		}		
 		
 		unset($props['skin']);
-		unset($props['cssClass']);		
+		unset($props['cssClass']);
+		unset($props['_invalidProperties']);
 								 		 		
 		return $props;
 	}
