@@ -1,6 +1,6 @@
 <?php
 
-Yii::import('ext.easyui.widgets.EuiControl');
+Yii::import('ext.yii-easyui.widgets.EuiControl');
 
 class EuiSlider extends EuiControl
 {	
