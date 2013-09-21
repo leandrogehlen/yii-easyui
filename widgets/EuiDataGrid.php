@@ -135,6 +135,12 @@ class EuiDataGrid extends EuiControl
 	 * @var bool Defi
 	 */
 	public $toolbar = array();
+	
+	public function __construct($owner=null)
+	{
+		parent::__construct($owner);		
+		$this->addInvalidProperties('columns');
+	}
 			
 	/**
 	 * Convert frozen columns to string represents javascript configuration 

@@ -27,7 +27,9 @@ abstract class EuiWidget extends CWidget {
 		foreach ($value as $i => $v)
 		{
 			if (is_bool($v))
-				$v = $v? 'true' : 'false';											
+				$v = $v? 'true' : 'false';	
+			else if (is_array($v))
+				$v = CJavaScript::encode($v);										
 			else if (is_string($v)) {
 				if (strpos($v, 'js:') === 0) 
 					$v = substr($v, 3);
@@ -37,7 +39,7 @@ abstract class EuiWidget extends CWidget {
 											
 			if ($v !== null)
 				$es[] = $i.':'.$v;
-		}
+		}		
 	
 		if (!empty($es))
 			return implode(',', $es);
@@ -141,7 +143,7 @@ abstract class EuiWidget extends CWidget {
 				
 		foreach ($this as $key => $value)
 		{
-			if ($value === null || is_array($value) || is_object($value))
+			if ($value === null || is_object($value))
 				continue;		
 				
 			if (!$this->isInvalidProperty($key))							
