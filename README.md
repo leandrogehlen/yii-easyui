@@ -12,7 +12,7 @@ Download http://www.jeasyui.com/download/, extracting content in ```js/jquery-ea
 
     jquery-easyui - jQuery EasyUI framework (version 1.3.3)
     
-Download **yii-easyui** extracting content in ```protected\extensions```
+Download [yii-easyui](https://github.com/leandrogehlen/yii-easyui/archive/master.zip) extracting content in ```protected\extensions```
     
 Configuration
 -------------
