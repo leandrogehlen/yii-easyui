@@ -1,11 +1,7 @@
 <?php
 
 class EuiController extends CController {	
-	
-	public $menu=array();
-	
-	public $breadcrumbs=array();
-	
+		
 	/**
 	 * Registers jquery and EasyUI JavaScript files and the theme CSS file.
 	 * @see CController::init()
@@ -13,31 +9,7 @@ class EuiController extends CController {
 	public function init() 
 	{
 		EuiJavaScript::registerCoreScripts();
-	}	
-				
-	/**
-	 * Default action execute where exception ocurred	 
-	 */
-	public function actionError()
-	{            
-        $error = Yii::app()->errorHandler->error;
-
-        if($error) {
-	    	if(Yii::app()->request->isAjaxRequest)
-                echo $error['message'];
-	    	else
-                $this->render('../templates/erro', $error);
-        }
-    }
-
-    /**
-     * Export success operation to readable JSON object
-     * @param boolean $success
-     */
-    public function exportToJSONSuccess($success)
-    {
-    	return CJSON::encode(array('success' => $success));
-    }
+	}						
     
    	/**
      * Exports an array to a special readable JSON object.     
@@ -45,44 +17,48 @@ class EuiController extends CController {
      * the total number of records is needed by the control to create the correct pagination<br/>     
      * @param array $data the array to generate a JSON object from it
      * @param int $total total number of records in the entire data-source
-     * @param array $exports attribute names of export
      * @return string Data representation in JSON format
      */
-    public function exportToJSONData($data, $total=null, $exports=array())
+    public function exportData($data, $total=null)
     {    	        	
-    	if(empty($exports))
-    	{    		
-    		if (is_object($data)) 
-    			$model = $data;
-    		else if (is_array($data) && !empty($data))
-    			$model = current($data);    		
-    			  
-    		if ($model instanceof ActiveRecordBase)
-    		{
-    			foreach ($model->attributeExports() as $attr)
-    				$exports = array_merge($exports, explode('.', $attr));	
-    		}	
-    	}
+    	$exports = array(); 		
     	
+    	if (is_object($data)) 
+    		$model = $data;
+    	else if (is_array($data) && !empty($data))
+    		$model = current($data);    	    	    	
+    	
+    	if ($model instanceof CActiveRecord && method_exists($model, 'attributeExports'))
+    	{    		
+    		$attrs = $model->attributeExports();      		  	
+    		
+    		if (!is_array($attrs) || (!empty($attrs) && !is_string(current($attrs))) )
+    			throw new CException(Yii::t('easyui', 'Invalid return of method "attributeExports" of class "{class}"', 
+    				array('{class}'=>get_class($model))));
+    		
+    		foreach ($attrs as $at)
+				$exports = array_merge($exports, explode('.', $at));	
+    	}	
+    	    	
     	if (is_array($data))
     	{
     		$rows = array();
     		foreach ($data as $item)    		    			    				
-    			$rows[] = $this->modelDataToArray($item, false, $exports);    		
+    			$rows[] = $this->encodeData($item, null, false, $exports);    		
     			    		    		
     		return CJSON::encode(array('total'=>(isset($total)) ? $total: sizeof($data),'rows'=>$rows));
     	}
     	else
-    		return CJSON::encode($this->modelDataToArray($data));         	
+    		return CJSON::encode($this->encodeData($data));         	
     }
         
     /**
      * Convert model to array for export JSON format
-     * @param ActiveRecordBase $model
-     * @param boolean $hidePk 
+     * @param $model the model to encode
+     * @param boolean $hidePk whether to export primary key attribute
      * @param array $exports attribute names of export
      */
-    protected function modelDataToArray($model, $hidePk=false, $exports=array())
+    private function encodeData($model, $alias=null, $hidePk=false, $exports=array())
     {
     	$data = array();    	
     	foreach ($model as $key => $value)    	  		   
@@ -90,16 +66,21 @@ class EuiController extends CController {
     		if ($hidePk && $key == $model->getTableSchema()->primaryKey)    		    		
     			continue;    			    		
 
-    		if (empty($exports) || in_array($key, $exports))
+    		if (empty($exports) || in_array($key, $exports))    		
+    		{    			    		
+    			$key = ($alias) ? strtolower($alias).'_'.$key : $key;
 	    		$data[$key] = $value;
+    		}
     	}    	
     	
     	foreach ($model->relations() as $k => $relation)
     	{    		
     		if ($relation[0] === CActiveRecord::BELONGS_TO)    		
     		{    			    		    			
-    			if ((empty($exports) || in_array($k, $exports)) && $model->{$k} !== null)
-    				$data = array_merge($data, $this->modelDataToArray($model->{$k}, true, $exports));
+    			$fk = $model->{$k};
+    			if ((empty($exports) || in_array($k, $exports)) && $fk !== null){    				
+    				$data = array_merge($data, $this->encodeData($fk, get_class($fk), true, $exports));
+    			}    				
     		}
     	}    		    	
     	return $data;
