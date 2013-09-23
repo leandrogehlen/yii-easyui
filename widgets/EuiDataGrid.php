@@ -209,8 +209,7 @@ class EuiDataGrid extends EuiControl
 	{									 				
 		$options = $this->toOptions();
 		$config = array(			
-			'frozenColumns'=>$this->frozenColumnsToArray(),
-			'pageList'=>array(20, 25)			
+			'frozenColumns'=>$this->frozenColumnsToArray()
 		);
 		
 		if (isset($this->loadFilter))
