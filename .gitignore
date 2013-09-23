@@ -1,3 +1,6 @@
 assets/
 protected/runtime/
 themes/classic/views/
+.settings
+.project
+.buildpath
