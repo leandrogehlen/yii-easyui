@@ -70,7 +70,7 @@ class EuiDataGrid extends EuiControl
 	/**	 
 	 * @var When set pagination property, initialize the page size selecting list
 	 */
-	public $pageList = array();
+	public $pageList = array(20,25);
 
 	/**	 
 	 * @var object	When request remote data, sending additional parameters also
@@ -210,7 +210,7 @@ class EuiDataGrid extends EuiControl
 		$options = $this->toOptions();
 		$config = array(			
 			'frozenColumns'=>$this->frozenColumnsToArray(),
-			'pageList'=>array(20, 25)			
+			'pageList'=>$this->pageList			
 		);
 		
 		if (isset($this->loadFilter))
