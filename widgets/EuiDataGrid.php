@@ -208,22 +208,25 @@ class EuiDataGrid extends EuiControl
 	public function run()
 	{									 				
 		$options = $this->toOptions();
-		$config = array(			
-			'frozenColumns'=>$this->frozenColumnsToArray()
-		);
+		$config = array();
+
+		if (!empty($this->frozenColumns))				
+			$config['frozenColumns'] = $this->frozenColumnsToArray();		
 		
 		if (isset($this->loadFilter))
 		{
 			$config['loadFilter'] = 'js:'.$this->loadFilter;
 			unset($options['loadFilter']);
 		}
-										
-		$script = EuiJavaScript::encodeId($this->id).".datagrid(\n";	
-		$script .= CJavaScript::encode($config)."\n";			 					
-		$script .= ");\n";
-								
-		Yii::app()->getClientScript()->registerScript($this->getId(), $script);
-													
+
+		if (!empty($config))
+		{
+			$script = EuiJavaScript::encodeId($this->id).".datagrid(\n";	
+			$script .= CJavaScript::encode($config)."\n";			 					
+			$script .= ");\n";
+			Yii::app()->getClientScript()->registerScript($this->getId(), $script);
+		}
+																							
 		echo CHtml::openTag('table', $options)."\n";
 		$this->renderColumns();				
 		echo CHtml::closeTag('table')."\n";		
