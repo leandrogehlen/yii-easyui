@@ -96,6 +96,11 @@ class EuiDataGrid extends EuiControl
 	 * @var boolean	Defines if to show row footer
 	 */
 	public $showFooter;
+	
+	/**
+	 * @var number The scrollbar width(when scrollbar is vertical) or height(when scrollbar is horizontal)
+	 */
+	public $scrollbarSize;
 
 	/**	 
 	 * @var string function Return style such as 'background:red'. The function take two parameter:
@@ -132,7 +137,9 @@ class EuiDataGrid extends EuiControl
 	public $frozenColumns=array();
 			
 	/**	 
-	 * @var bool Defi
+	 * @var mixed The top toolbar of datagrid panel. Possible values:
+	 * an array, each tool options are same as linkbutton
+	 * a selector that indicate the toolbar
 	 */
 	public $toolbar = array();
 	
