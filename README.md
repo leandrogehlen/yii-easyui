@@ -16,23 +16,7 @@ Download [yii-easyui](https://github.com/leandrogehlen/yii-easyui/archive/master
     
 Configuration
 -------------
-There are two modes to register resources:
-
-Override the ```init()``` method  in your controller
-
-```php
-Yii::import('ext.yii-easyui.base.EuiJavaScript');
-
-class SiteController extends Controller {
-
-    public function init() 
-    {
-	      EuiJavaScript::registerCoreScripts();
-    }	
-}
-```
-
-Extends your controller from ```EuiController``` 
+Is necessary that the controllers extends of class ```EuiController```
 
 ```php
 Yii::import('ext.yii-easyui.base.EuiController');
