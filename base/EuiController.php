@@ -73,16 +73,19 @@ class EuiController extends CController {
     		}
     	}    	
     	
-    	foreach ($model->relations() as $k => $relation)
-    	{    		
-    		if ($relation[0] === CActiveRecord::BELONGS_TO)    		
-    		{    			    		    			
-    			$fk = $model->{$k};
-    			if ((empty($exports) || in_array($k, $exports)) && $fk !== null){    				
-    				$data = array_merge($data, $this->encodeData($fk, get_class($fk), true, $exports));
-    			}    				
-    		}
-    	}    		    	
+    	if ($model instanceof CActiveRecord)
+    	{    	
+    		foreach ($model->relations() as $k => $relation)
+    		{    		
+    			if ($relation[0] === CActiveRecord::BELONGS_TO)    		
+    			{    			    		    			
+    				$fk = $model->{$k};
+    				if ((empty($exports) || in_array($k, $exports)) && $fk !== null){    				
+    					$data = array_merge($data, $this->encodeData($fk, get_class($fk), true, $exports));
+    				}    				
+    			}
+    		}    		    	
+    	}
     	return $data;
     }   
 }
