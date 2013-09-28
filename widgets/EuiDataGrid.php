@@ -148,6 +148,11 @@ class EuiDataGrid extends EuiControl
 		parent::__construct($owner);		
 		$this->addInvalidProperties('columns');
 	}
+	
+	protected function getCssClass()
+	{
+		return 'easyui-datagrid';
+	}
 			
 	/**
 	 * Convert frozen columns to string represents javascript configuration 
