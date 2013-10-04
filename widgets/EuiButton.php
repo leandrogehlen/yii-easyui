@@ -40,9 +40,9 @@ class EuiButton extends EuiControl
 	 * (non-PHPdoc)
 	 * @see CWidget::init()
 	 */
-	public function init() {
-		parent::init();
+	public function init() {		
 		$this->initHandler();
+		$this->addInvalidProperties('text');
 	}
 
 	/**
@@ -52,7 +52,6 @@ class EuiButton extends EuiControl
 	public function run()
 	{
 		$options = $this->toOptions();											
-		unset($options['text']);		
 		echo CHtml::Tag('button', $options, CHtml::encode($this->text))."\n";		
 	}	
 }
