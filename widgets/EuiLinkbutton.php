@@ -20,6 +20,12 @@ class EuiLinkbutton extends EuiButton
 		return 'easyui-linkbutton';
 	}
 	
+	public function  init()
+	{
+		parent::init();
+		$this->addInvalidProperties('url');
+	}
+	
 	public function run()
 	{						
 		$options = $this->toOptions();
