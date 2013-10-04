@@ -196,7 +196,9 @@ class EuiDataGrid extends EuiControl
 				$item = Yii::createComponent($item, $this);
 				$item->init();						
 								
-				$tbar[$key] = $item->toArray();
+				$cfg = $item->toArray();
+				$cfg['text'] = $item->text;
+				$tbar[$key] = $cfg;
 			}	
 			$this->toolbar = "js:".CJavaScript::encode($tbar);
 		}													
