@@ -1,8 +1,13 @@
 <?php 
 
-Yii::import('ext.yii-easyui.widgets.EuiContainer');
+Yii::import('ext.yii-easyui.widgets.EuiWidget');
 
-class EuiCombotree extends EuiContainer {
+class EuiCombotree extends EuiWidget {
+	
+	/**
+	 * @var string Defines attribute name of input
+	 */
+	public $name;
 	
 	/**	 
 	 * @var string	a URL to retrieve remote data
@@ -54,10 +59,18 @@ class EuiCombotree extends EuiContainer {
 	{
 		return 'easyui-combotree';
 	}
+	
+	public function init()
+	{		
+		$this->addInvalidProperties('name');
+	}
 		
 	public function run()
 	{
-		echo CHtml::openTag('select', $this->toOptions());
+		$options = $this->toOptions();
+		$options['name'] = $this->name;
+		
+		echo CHtml::openTag('select', $options);
 		echo CHtml::closeTag('select');
 	}
 }

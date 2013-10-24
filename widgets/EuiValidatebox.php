@@ -4,6 +4,11 @@ Yii::import('ext.yii-easyui.widgets.EuiControl');
 
 class EuiValidatebox extends EuiControl
 {
+	/**
+	 * @var string Defines attribute name of input
+	 */
+	public $name;
+	
 	/**	 
 	 * @var boolean	Defines if the field should be inputed
 	 */
@@ -39,10 +44,17 @@ class EuiValidatebox extends EuiControl
 	{
 		return 'easyui-validatebox';
 	}
+	
+	public function init() 
+	{
+		$this->addInvalidProperties('name');
+	}
 
 	public function run() 
-	{
-		echo CHtml::Tag('input', $this->toOptions())."\n";
+	{				
+		$options = $this->toOptions();
+		$options['name'] = $this->name;
+		echo CHtml::Tag('input', $options)."\n";
 	}
 }
 

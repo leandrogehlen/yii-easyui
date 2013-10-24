@@ -6,6 +6,15 @@ Yii::import('ext.yii-easyui.widgets.EuiDataColumn');
 
 class EuiCombogrid extends EuiDataGrid
 {		
+	
+	/**
+	 * @var string Defines attribute name of input
+	 */
+	public $name;
+		
+	/**	 
+	 * @var number The drop down panel width
+	 */
 	public $panelWidth;
 	
 	/**
@@ -69,7 +78,7 @@ class EuiCombogrid extends EuiDataGrid
 	{
 		$js = array();
 		foreach ($this->columns as $col)
-		{
+		{			
 			$js[] = $col->toArray();									
 		}		
 								
@@ -82,9 +91,18 @@ class EuiCombogrid extends EuiDataGrid
 		return 'easyui-combogrid';
 	}	
 	
+	public function init()
+	{
+		parent::init();
+		$this->addInvalidProperties('name');
+	}
+	
 	public function run()
 	{						
+		$options = $this->toOptions();
+		$options['name'] = $this->name;
+		
 		$this->registerColumnsScript();		
-		echo CHtml::Tag('input', $this->toOptions());	
+		echo CHtml::Tag('input', $options);	
 	}
 }
