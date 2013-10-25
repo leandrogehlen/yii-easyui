@@ -33,8 +33,7 @@ class EuiMenuitem extends EuiContainer
 	
 	public function __construct($owner=null)
 	{
-		parent::__construct($owner);
-		$this->addInvalidProperties(array('text'));
+		parent::__construct($owner);		
 		$this->inline = true;
 	}
 	
@@ -43,7 +42,12 @@ class EuiMenuitem extends EuiContainer
 		return 'EuiMenuItem';		
 	}	
 	
-	function run() 
+	public function init()
+	{
+		$this->addInvalidOptions('text');
+	}
+	
+	public function run() 
 	{		
 		if ($this->separator)
 			echo CHtml::Tag('div', array('class'=>'menu-sep'), '')."\n";

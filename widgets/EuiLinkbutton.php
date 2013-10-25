@@ -23,7 +23,7 @@ class EuiLinkbutton extends EuiButton
 	public function  init()
 	{
 		parent::init();
-		$this->addInvalidProperties('url');
+		$this->addInvalidOptions('url');
 	}
 	
 	public function run()

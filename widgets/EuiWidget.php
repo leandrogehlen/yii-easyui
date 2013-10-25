@@ -7,7 +7,7 @@ abstract class EuiWidget extends CWidget {
 	 */
 	private static $_counter=0;
 			
-	private $_invalidProperties = array();
+	private $_invalidOptions = array();
 					
 	/**	 
 	 * @var string Add a custom specification style to the component
@@ -18,10 +18,9 @@ abstract class EuiWidget extends CWidget {
 	 * @var string Add a custom specification style to the component
 	 */
 	public $cssClass;
+		
 	
-	public $dataOptions;
-	
-	protected function optionsEncode($value)
+	protected function encodeOptions($value)
 	{		
 		$es = array();
 		foreach ($value as $i => $v)
@@ -57,11 +56,11 @@ abstract class EuiWidget extends CWidget {
 	 * @param string $propName the property name
 	 * @return bool
 	 */
-	private function isInvalidProperty($propName)
+	private function isInvalidOption($optionName)
 	{
-		foreach ($this->_invalidProperties as $prop)
+		foreach ($this->_invalidOptions as $opt)
 		{
-			if ($prop === $propName)
+			if ($opt === $optionName)
 				return true;
 		}	
 		return false;	
@@ -71,13 +70,12 @@ abstract class EuiWidget extends CWidget {
 	 * Add property of self class to ignored list  
 	 * @param mixed $props property name or arry of property name
 	 */
-	protected function addInvalidProperties($props)
+	protected function addInvalidOptions($options)
 	{		
-		if (is_array($props))
-			$this->_invalidProperties = array_merge($this->_invalidProperties, $props);
+		if (is_array($options))
+			$this->_invalidOptions = array_merge($this->_invalidOptions, $options);
 		else
-			$this->_invalidProperties[] = $props;
-			 				
+			$this->_invalidOptions[] = $options;			 			
 	}	
 	
 	/**
@@ -146,7 +144,7 @@ abstract class EuiWidget extends CWidget {
 			if ($value === null || is_object($value))
 				continue;		
 				
-			if (!$this->isInvalidProperty($key))							
+			if (!$this->isInvalidOption($key))							
         		$props[$key] = $value;					
 		}		
 		
@@ -172,7 +170,7 @@ abstract class EuiWidget extends CWidget {
 		}
 				
 		$options['id'] = $this->getId();
-		$options['data-options'] = $this->optionsEncode($props);
+		$options['data-options'] = $this->encodeOptions($props);
 		return $options;		
 	}
 	

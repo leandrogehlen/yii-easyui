@@ -21,14 +21,6 @@ class EuiContainer extends EuiControl {
 	public $content;
 	
 	
-	public function __construct($owner=null)
-	{
-		parent::__construct($owner);		
-		$this->addInvalidProperties(array(		
-			'inline'
-		));
-	}
-	
 	/**
 	 * Render the items for this container	 
 	 * @param array $items
@@ -104,6 +96,7 @@ class EuiContainer extends EuiControl {
 	public function init()
 	{		
 		parent::init();
+		$this->addInvalidOptions('inline');
 		$this->initItems($this);			
 	}
 		

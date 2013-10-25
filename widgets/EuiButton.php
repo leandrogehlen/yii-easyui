@@ -42,7 +42,7 @@ class EuiButton extends EuiControl
 	 */
 	public function init() {		
 		$this->initHandler();
-		$this->addInvalidProperties('text');
+		$this->addInvalidOptions('text');
 	}
 
 	/**

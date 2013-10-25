@@ -41,12 +41,5 @@ class EuiMenu extends EuiContainer
 	{
 		parent::__construct($owner);
 		$this->inline = true;
-	}
-	
-	/*public function run() 
-	{
-		echo CHtml::openTag('div', $this->toArray())."\n";
-		$this->renderItems();		
-		echo CHtml::closeTag('div')."\n";
-	}*/
+	}	
 }

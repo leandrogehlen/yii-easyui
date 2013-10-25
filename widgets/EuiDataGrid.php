@@ -142,12 +142,7 @@ class EuiDataGrid extends EuiControl
 	 * a selector that indicate the toolbar
 	 */
 	public $toolbar = array();
-	
-	public function __construct($owner=null)
-	{
-		parent::__construct($owner);		
-		$this->addInvalidProperties('columns');
-	}
+		
 	
 	protected function getCssClass()
 	{
@@ -210,6 +205,7 @@ class EuiDataGrid extends EuiControl
 	public function init()
 	{
 		parent::init();
+		$this->addInvalidOptions('columns');
 		$this->initToolbar();					
 		$this->columns = $this->initCollection($this->columns, 'EuiDataColumn');
 		$this->frozenColumns = $this->initCollection($this->frozenColumns, 'EuiDataColumn');		

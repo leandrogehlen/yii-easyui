@@ -27,7 +27,7 @@ class EuiCombogrid extends EuiDataGrid
 	 */
 	public $validType;
 	
-	/**system.db.ar.CActiveRecord
+	/**
 	 * @var number Delay to validate from the last inputting value
 	 */
 	public $delay;
@@ -94,7 +94,7 @@ class EuiCombogrid extends EuiDataGrid
 	public function init()
 	{
 		parent::init();
-		$this->addInvalidProperties('name');
+		$this->addInvalidOptions('name');
 	}
 	
 	public function run()

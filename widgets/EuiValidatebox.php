@@ -47,7 +47,7 @@ class EuiValidatebox extends EuiControl
 	
 	public function init() 
 	{
-		$this->addInvalidProperties('name');
+		$this->addInvalidOptions('name');
 	}
 
 	public function run() 
