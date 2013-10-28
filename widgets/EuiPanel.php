@@ -1,8 +1,8 @@
 <?php 
 
-Yii::import('ext.yii-easyui.widgets.EuiContainer');
+Yii::import('ext.yii-easyui.widgets.EuiControl');
 
-class EuiPanel extends EuiContainer
+class EuiPanel extends EuiControl
 {
 	/**	 
 	 * @var string The title text to display in panel header

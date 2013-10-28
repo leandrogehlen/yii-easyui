@@ -36,10 +36,16 @@ class EuiMenu extends EuiContainer
 	{
 		return 'EuiMenuitem';		
 	}
-	
-	public function __construct($owner=null)
+
+	public function init()
 	{
-		parent::__construct($owner);
-		$this->inline = true;
-	}	
+		parent::init();		
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}
+	
+	public function run()
+	{
+		parent::run();
+		echo CHtml::closeTag('div')."\n";
+	}
 }

@@ -30,12 +30,7 @@ class EuiMenuitem extends EuiContainer
 	 * @var boolean	Defines if to disable the menu item
 	 */
 	public $disabled;
-	
-	public function __construct($owner=null)
-	{
-		parent::__construct($owner);		
-		$this->inline = true;
-	}
+		
 	
 	public function getDefaultItemClass() 
 	{
@@ -44,6 +39,7 @@ class EuiMenuitem extends EuiContainer
 	
 	public function init()
 	{
+		parent::init();
 		$this->addInvalidOptions('text');
 	}
 	

@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiContainer');
 
-class EuiTree extends EuiContainer {
+class EuiTree extends EuiControl {
 	
 	/**	 
 	 * @var string	a URL to retrieve remote data

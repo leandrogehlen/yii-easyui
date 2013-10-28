@@ -3,51 +3,26 @@
 Yii::import('ext.yii-easyui.widgets.EuiControl');
 
 class EuiContainer extends EuiControl {
-	
-	/**
-	 * Display itens inline
-	 * @var boolean
-	 */
-	public $inline;
-	
+			
 	/**	  
 	 * @var array of components
 	 */
 	public $items = array();
-	
-	/**	 
-	 * @var string the content HTML
-	 */
-	public $content;
-	
+		
 	
 	/**
 	 * Render the items for this container	 
 	 * @param array $items
 	 */
 	protected function renderItems()
-	{					
+	{				
 		foreach ($this->items as $it){
-			if (is_object($it))	
-			{
-				if ($this->inline === true || $this->inline === "true")
-					$it->run(); 
-				else{
-					echo CHtml::openTag('div')."\n";
-					$it->run();
-					echo CHtml::closeTag('div')."\n";
-				}									
-			}	
+			
+			if (is_object($it))				
+				$it->run(); 																	
 			else if (is_array($it))
-			{				
-				$content = null;				
-				if (isset($it['content']))
-				{ 									
-					$content = $it['content'];
-					unset($it['content']);
-				}													
-				echo CHtml::openTag('div', $it)."\n";							
-				echo $content;					
+			{																				
+				echo CHtml::openTag('div', $it)."\n";															
 				echo CHtml::closeTag('div', $it)."\n";
 			}				
 		}					 	
@@ -96,21 +71,14 @@ class EuiContainer extends EuiControl {
 	public function init()
 	{		
 		parent::init();
-		$this->addInvalidOptions('inline');
-		$this->initItems($this);			
+		$this->addInvalidOptions(array('inline', 'items'));
+		$this->initItems($this);		
 	}
 		
 	
 	public function run()
-	{	
-		$options = $this->toOptions();
-		unset($options['content']);
-		unset($options['inline']);
-		
-		echo CHtml::openTag('div', $options)."\n";
-		echo $this->content."\n";	
-		$this->renderItems();
-		echo CHtml::closeTag('div')."\n";				
+	{							
+		$this->renderItems();					
 	}
 }
 

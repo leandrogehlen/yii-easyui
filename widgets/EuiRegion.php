@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiContainer');
 
-class EuiRegion extends EuiContainer	
+class EuiRegion extends EuiWidget	
 {	
 	const NORTH = 'north';
 	const EAST = 'east';

@@ -1,8 +1,8 @@
 <?php
 
-Yii::import('ext.yii-easyui.widgets.EuiContainer');
+Yii::import('ext.yii-easyui.widgets.EuiControl');
 
-class EuiAccordion extends EuiContainer 
+class EuiAccordion extends EuiControl 
 {	
 	protected function getCssClass()
 	{

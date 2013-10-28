@@ -44,12 +44,7 @@ abstract class EuiWidget extends CWidget {
 			return implode(',', $es);
 		else
 			return null;
-	}			
-	
-	protected function generateId()
-	{
-		return 'ew'.self::$_counter++;
-	}
+	}				
 	
 	/**	 
 	 * Return if property is ignored
@@ -129,8 +124,7 @@ abstract class EuiWidget extends CWidget {
 	protected function getCssClass()
 	{
 		return $this->cssClass;
-	}
-		
+	}		
 				
 	/**
 	 * @return array Represents configuration this component
@@ -150,7 +144,7 @@ abstract class EuiWidget extends CWidget {
 		
 		unset($props['skin']);
 		unset($props['cssClass']);
-		unset($props['_invalidProperties']);
+		unset($props['_invalidOptions']);
 								 		 		
 		return $props;
 	}

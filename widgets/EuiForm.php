@@ -1,8 +1,8 @@
 <?php 
 
-Yii::import('ext.yii-easyui.widgets.EuiContainer');
+Yii::import('ext.yii-easyui.widgets.EuiControl');
 
-class EuiForm extends EuiContainer
+class EuiForm extends EuiControl
 {			
 	/**
 	 * @var mixed the form action URL (see {@link CHtml::normalizeUrl} for details about this parameter).
