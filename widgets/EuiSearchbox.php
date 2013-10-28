@@ -29,18 +29,21 @@ class EuiSearchbox extends EuiValidatebox
 	{
 		return 'easyui-searchbox';
 	}
+	
+	public function init()
+	{
+		$this->addInvalidOptions('menu');
+	}
 				
 	public function run()
-	{
-		$options = $this->toOptions();
-		$options['id'] = $this->id;
+	{		
+		$options = $this->toOptions();		
 		
 		if (is_array($this->menu)){
-			$id = $this->generateId();
+			$id = $this->id.'_menu';
 			$options['menu'] = EuiJavaScript::encodeRefId($id);
-			
-			echo CHtml::openTag('div', array('id'=>$id)). "\n";
 						
+			echo CHtml::openTag('div', array('id'=>$id)). "\n";					
 			foreach ($this->menu as $item)
 			{			
 				$text = $item['text'];	
@@ -48,11 +51,7 @@ class EuiSearchbox extends EuiValidatebox
 				echo CHtml::tag('div', $item, $text)."\n";
 			}
 			echo CHtml::closeTag('div'). "\n";
-		}
-								
-		if (isset ($this->title))
-			echo CHtml::Tag('label', array('for' => $this->name), $this->title);
-														
+		}																						
 		echo CHtml::Tag('input', $options, null);				
 	}	
 }
