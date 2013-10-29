@@ -168,10 +168,15 @@ abstract class EuiWidget extends CWidget {
 		return $options;		
 	}
 	
+	public function init()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}
+	
+	
 	public function run()
-	{						
-		echo CHtml::openTag('div', $this->toOptions());
-		echo CHtml::closeTag('div');
+	{
+		echo CHtml::closeTag('div')."\n";
 	}
 }
 

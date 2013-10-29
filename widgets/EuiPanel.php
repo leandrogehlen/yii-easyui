@@ -117,7 +117,7 @@ class EuiPanel extends EuiControl
 	/**	 
 	 * @var string Define the id element content buttons
 	 */
-	public $buttons;
+	public $buttons;	
 			
 	/**
 	 * (non-PHPdoc)
@@ -126,8 +126,7 @@ class EuiPanel extends EuiControl
 	protected function getCssClass()
 	{
 		return 'easyui-panel';
-	}
-	
+	}	
 }
 
 ?>
