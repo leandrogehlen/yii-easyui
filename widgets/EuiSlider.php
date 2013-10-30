@@ -59,5 +59,11 @@ class EuiSlider extends EuiControl
 	{
 		return 'easyui-slider';
 	}		
+	
+	public function run()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+		echo CHtml::closeTag('div')."\n";
+	}
 }
 ?>
