@@ -11,7 +11,7 @@ class EuiJavaScript
 	/**
 	 * The default locale
 	 */
-	const DEFAULT_LOCALE='easyui-lang-pt_BR';
+	const DEFAULT_LOCALE='easyui-lang-en';
 	
 	/**
 	 * Registers the core script files.
