@@ -1,5 +1,7 @@
 <?php
 
+Yii::import('ext.yii-easyui.base.EuiJavaScript');
+
 class EuiController extends CController {	
 		
 	/**
