@@ -18,6 +18,17 @@ class EuiTabs extends EuiControl {
 	{
 		return 'easyui-tabs';
 	}	
+	
+	public function init()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}
+	
+	
+	public function run()
+	{
+		echo CHtml::closeTag('div')."\n";
+	}
 }
 
 ?>

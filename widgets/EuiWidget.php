@@ -166,18 +166,7 @@ abstract class EuiWidget extends CWidget {
 		$options['id'] = $this->getId();
 		$options['data-options'] = $this->encodeOptions($props);
 		return $options;		
-	}
-	
-	public function init()
-	{
-		echo CHtml::openTag('div', $this->toOptions())."\n";
-	}
-	
-	
-	public function run()
-	{
-		echo CHtml::closeTag('div')."\n";
-	}
+	}		
 }
 
 ?>

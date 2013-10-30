@@ -33,6 +33,18 @@ class EuiTabpanel extends EuiControl
 	 * @var boolean True to display the 'close' tool button and allow the user to close the tab, false to hide the button and disallow closing the panel
 	 */
 	public $closable;
+	
+	
+	public function init()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}
+	
+	
+	public function run()
+	{
+		echo CHtml::closeTag('div')."\n";
+	}
 
 }
 

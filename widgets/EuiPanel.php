@@ -127,6 +127,17 @@ class EuiPanel extends EuiControl
 	{
 		return 'easyui-panel';
 	}	
+	
+	public function init()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}
+	
+	
+	public function run()
+	{
+		echo CHtml::closeTag('div')."\n";
+	}
 }
 
 ?>

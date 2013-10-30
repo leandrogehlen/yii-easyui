@@ -19,8 +19,8 @@ class EuiLayout extends EuiWidget {
 	 */
 	public function init()
 	{
-		$this->addInvalidOptions('regions');			
-		parent::init();		
+		$this->addInvalidOptions('regions');
+		echo CHtml::openTag('div', $this->toOptions())."\n";				
 	}
 	
 	/**

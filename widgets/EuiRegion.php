@@ -32,7 +32,17 @@ class EuiRegion extends EuiWidget
 	 * @var bool True to display a SplitBar between this region and its neighbor, 
 	 * allowing the user to resize the regions dynamically (defaults to true)	 	 
 	 */
-	public $split;						
+	public $split;	
+
+	public function init()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}
+	
+	public function run()
+	{
+		echo CHtml::closeTag('div')."\n";
+	}
 }
 
 ?>

@@ -203,12 +203,12 @@ class EuiDataGrid extends EuiControl
 	 * Creates columns and frozenColumns objects and initializes them.
 	 */
 	public function init()
-	{
-		parent::init();
+	{		
 		$this->addInvalidOptions('columns');
 		$this->initToolbar();					
 		$this->columns = $this->initCollection($this->columns, 'EuiDataColumn');
-		$this->frozenColumns = $this->initCollection($this->frozenColumns, 'EuiDataColumn');		
+		$this->frozenColumns = $this->initCollection($this->frozenColumns, 'EuiDataColumn');
+		//parent::init();
 	}
 	
 	/**

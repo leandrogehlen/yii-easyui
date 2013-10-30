@@ -14,4 +14,14 @@ class EuiAccordionpanel extends EuiPanel
 	{
 		return null;
 	}
+	
+	public function init()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+	}	
+	
+	public function run()
+	{
+		echo CHtml::closeTag('div')."\n";
+	}
 }
