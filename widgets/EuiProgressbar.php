@@ -17,6 +17,12 @@ class EuiProgressbar extends EuiControl
 	public function getCssClass()
 	{
 		return 'easyui-progressbar';
+	}			
+	
+	public function run()
+	{
+		echo CHtml::openTag('div', $this->toOptions())."\n";
+		echo CHtml::closeTag('div')."\n";
 	}
 		
 }
