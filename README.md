@@ -8,11 +8,8 @@ The extension implements widgets for writing the componentes javascript.
 Including the resources
 ------------------------
 
-Download http://www.jeasyui.com/download/, extracting content in ```js/jquery-easyui```
-
-    jquery-easyui - jQuery EasyUI framework (version 1.3.3)
-    
-Download [yii-easyui](https://github.com/leandrogehlen/yii-easyui/archive/master.zip) extracting content in ```protected\extensions```
+Download http://www.jeasyui.com/download/, extracting content in ```js/jquery-easyui```  
+Download [yii-easyui](https://github.com/leandrogehlen/yii-easyui/archive/master.zip) extracting content in ```protected/extensions```
     
 Configuration
 -------------
@@ -28,6 +25,24 @@ class SiteController extends EuiController {
 	      $this->render('index');	
     }	
 }
+```
+
+####Important!
+
+The native css files used by [Yii](http://www.yiiframework.com) generate conflicts with [jQuery EasyUI](http://www.jeasyui.com)  
+To avoid conflict **REMOVE** the following lines in ```protected/views/layouts/main.php```
+
+```php
+<!-- blueprint CSS framework -->
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+
+<!--[if lt IE 8]>
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+<![endif]-->
+
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 ```
 
 Widgets
