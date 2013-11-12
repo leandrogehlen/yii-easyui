@@ -86,6 +86,20 @@ class EuiForm extends EuiControl
 	}
 	
 	/**
+	 * Renders a number field for a model attribute.
+	 * This method is a wrapper of {@link EuiNumberbox}.
+	 * @param CModel $model the data model
+	 * @param string $attribute the attribute
+	 * @param array $options widget options.
+	 * @return string the generated input field
+	 */
+	public function numberBox($model,$attribute,$options=array())
+	{
+		CHtml::resolveNameID($model,$attribute,$options);
+		return $this->widget('ext.yii-easyui.widgets.EuiNumberbox', $options, true);
+	}
+	
+	/**
 	 * Renders a date field for a model attribute.
 	 * This method is a wrapper of {@link EuiDatebox}.	 
 	 * @param CModel $model the data model
