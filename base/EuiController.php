@@ -11,7 +11,36 @@ class EuiController extends CController {
 	public function init() 
 	{
 		EuiJavaScript::registerCoreScripts();
-	}						
+	}		
+	
+	/**
+	 * Applies LIMIT, OFFSET and ORDER to the specified query criteria.
+	 * @param CDbCriteria $criteria The query criteria that should be applied restrictions
+	 * @param CActiveRecord $model The model that will execute criteria 
+	 */
+	protected function prepareCriteria($model, $criteria)
+	{
+		if (isset($_REQUEST['rows']))
+		{
+			$criteria->limit = $_REQUEST['rows'];
+			$criteria->offset = ($_REQUEST['page']-1) * $criteria->limit;
+		}
+	
+		if (isset($_REQUEST['sort']))
+		{
+			$sort = $_REQUEST['sort'];
+			if ($model->hasAttribute($sort))
+				$criteria->order = $model->getTableAlias(true).'.'.$sort;
+			else {
+				$tokens = split('_', $sort);
+				$order = array_pop($tokens);												 
+				$alias = array_pop($tokens);
+				
+				$criteria->order = $alias.'.'.$order;				
+			}
+			$criteria->order .= ' '.$_REQUEST['order'];
+		}
+	}
     
    	/**
      * Exports an array to a special readable JSON object.     
@@ -81,9 +110,11 @@ class EuiController extends CController {
     		{    		
     			if ($relation[0] === CActiveRecord::BELONGS_TO)    		
     			{    			    		    			
-    				$fk = $model->{$k};
-    				if ((empty($exports) || in_array($k, $exports)) && $fk !== null){    				
-    					$data = array_merge($data, $this->encodeData($fk, get_class($fk), true, $exports));
+    				$fk = $model->{$k};    				    				
+    				if ((empty($exports) || in_array($k, $exports)) && $fk !== null){
+    					$cls = get_class($fk);
+    					$alias = ($alias !== null) ? $alias.'_'.$cls : $cls; 
+    					$data = array_merge($data, $this->encodeData($fk, $alias, true, $exports));
     				}    				
     			}
     		}    		    	
