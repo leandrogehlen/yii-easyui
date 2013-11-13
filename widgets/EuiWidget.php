@@ -1,13 +1,16 @@
 <?php
 
 abstract class EuiWidget extends CWidget {
+		
+	/**
+	 * @var array the properties that are not rendered
+	 */
+	private $_invalidOptions = array();
 	
 	/**
-	 * @var integer the counter for generating IDs.
+	 * @var array attributes of html tags
 	 */
-	private static $_counter=0;
-			
-	private $_invalidOptions = array();
+	public $htmlOptions = array();
 					
 	/**	 
 	 * @var string Add a custom specification style to the component
@@ -18,8 +21,8 @@ abstract class EuiWidget extends CWidget {
 	 * @var string Add a custom specification style to the component
 	 */
 	public $cssClass;
-		
 	
+				
 	protected function encodeOptions($value)
 	{		
 		$es = array();
@@ -29,13 +32,14 @@ abstract class EuiWidget extends CWidget {
 				$v = $v? 'true' : 'false';	
 			else if (is_array($v))
 				$v = !empty($v) ? CJavaScript::encode($v) : null;										
-			else if (is_string($v)) {
+			else if (is_string($v)) 
+			{
 				if (strpos($v, 'js:') === 0) 
 					$v = substr($v, 3);
 				else 
 					$v = "'".$v."'";			
 			}
-											
+													
 			if ($v !== null)
 				$es[] = $i.':'.$v;
 		}		
@@ -141,14 +145,18 @@ abstract class EuiWidget extends CWidget {
 			if (!$this->isInvalidOption($key))							
         		$props[$key] = $value;					
 		}		
-		
+				
 		unset($props['skin']);
-		unset($props['cssClass']);
+		unset($props['cssClass']);		
+		unset($props['htmlOptions']);
 		unset($props['_invalidOptions']);
 								 		 		
 		return $props;
 	}
 
+	/**
+	 * @return array Represents options this component
+	 */
 	public function toOptions() 
 	{		
 		$options = array();
@@ -165,8 +173,9 @@ abstract class EuiWidget extends CWidget {
 				
 		$options['id'] = $this->getId();
 		$options['data-options'] = $this->encodeOptions($props);
+		$options = array_merge($options, $this->htmlOptions); 
 		return $options;		
-	}		
+	}	
 }
 
 ?>
