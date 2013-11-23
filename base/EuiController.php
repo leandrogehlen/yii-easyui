@@ -41,6 +41,23 @@ class EuiController extends CController {
 			$criteria->order .= ' '.$_REQUEST['order'];
 		}
 	}
+	
+	/**
+	 * Exports an model to a special readable JSON to work with formulários
+	 * @param CModel $model
+	 * @return string JSON string representation of model
+	 */
+	public function exportModel($model)
+	{
+		$data = $this->encodeData($model);
+		foreach ($data as $k => $v)
+		{
+			$className = get_class($model);
+			$data[$className.'['.$k.']'] = $v;
+			unset($data[$k]);
+		}
+		return CJSON::encode($data);
+	}
     
    	/**
      * Exports an array to a special readable JSON object.     
