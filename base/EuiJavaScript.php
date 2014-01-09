@@ -21,7 +21,6 @@ class EuiJavaScript
 	{							
 		$cs = Yii::app()->getClientScript();
 			
-		//$scriptUrl = Yii::app()->getAssetManager()->publish(Yii::app()->baseUrl.'/js/jquery-easyui');
 		$scriptUrl = Yii::app()->baseUrl.'/js/jquery-easyui';
 		$themeUrl = $scriptUrl.'/themes';					
 		$localeUrl = $scriptUrl.'/locale';
@@ -34,6 +33,13 @@ class EuiJavaScript
 		$cs->registerCssFile($themeUrl.'/icon.css');
 		
 		$cs->registerScriptFile($localeUrl.'/'.$locale.'.js');			
+	}
+	
+	public static function registerCrudScripts()
+	{		
+		$path = Yii::getPathOfAlias('ext.yii-easyui.assets.js');
+		$url = Yii::app()->getAssetManager()->publish($path.'/jquery.crud.js');
+		Yii::app()->getClientScript()->registerScriptFile($url);					
 	}
 		
 	

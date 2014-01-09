@@ -18,7 +18,7 @@ class EuiController extends CController {
 	 * @param CDbCriteria $criteria The query criteria that should be applied restrictions
 	 * @param CActiveRecord $model The model that will execute criteria 
 	 */
-	protected function prepareCriteria($model, $criteria)
+	protected function prepareList($model, $criteria)
 	{
 		if (isset($_REQUEST['rows']))
 		{
