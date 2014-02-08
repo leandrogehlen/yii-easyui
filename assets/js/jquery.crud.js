@@ -8,11 +8,11 @@ var locale = {
 	}
 };
 
-Crud = function(options) {
+var Crud = function(options) {
 	this.init(options);
 };
 
-$.extend(Crud.prototype, {	
+Crud.prototype = {	
 	
 	init: function(options) {
 		var that = this,		
@@ -70,30 +70,6 @@ $.extend(Crud.prototype, {
         return valid;
 	},
 	
-	clearForm: function(){
-		var that = this;
-		
-		that.form.find('input,select,textarea').each(function(){                        
-			var t = this.type, tag = this.tagName.toLowerCase();
-			if (t == 'text' || t == 'hidden' || t == 'password' || tag == 'textarea'){
-				this.value = '';
-			} else if (t == 'file'){
-				var file = $(this);
-				file.after(file.clone().val(''));
-				file.remove();
-			} else if (t == 'checkbox' || t == 'radio'){
-				this.checked = false;
-			} else if (tag == 'select'){
-				this.selectedIndex = -1;
-			}                        
-		});
-		
-		if ($.fn.combo) that.form.find('.combo-f').combo('clear');
-		if ($.fn.combobox) that.form.find('.combobox-f').combobox('clear');
-		if ($.fn.combotree) that.form.find('.combotree-f').combotree('clear');
-		if ($.fn.combogrid) that.form.find('.combogrid-f').combogrid('clear');		
-	},
-	
 	clearErrors: function() {
 		var div = $('.errorMessage');
         if (div.length) div.remove();
@@ -109,7 +85,7 @@ $.extend(Crud.prototype, {
 	
 	 add: function() { 
 		var that = this;
-		that.clearForm();
+		that.form.form('clear');
 		that.form.attr('action', that.route+'/create');
 		that.options.onBeforeEdit(true, {});
 		that.options.window.dialog('open');    
@@ -198,4 +174,4 @@ $.extend(Crud.prototype, {
 			 }                                
 		 });                      
 	 }	
-});
+};
