@@ -2,10 +2,10 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiWidget');
 
-class EuiLabel extends EuiWidget 
+class EuiLabel extends EuiWidget
 {
 	public $value;
-	
+
 	public $for;
 
 	public function run()

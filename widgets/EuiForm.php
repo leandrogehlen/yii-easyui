@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 class EuiForm extends CActiveForm
-{						
+{
 	/**
 	 * Renders a text field for a model attribute.
-	 * This method is a wrapper of {@link EuiValidatebox}.	 
+	 * This method is a wrapper of {@link EuiValidatebox}.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array $options widget options.
@@ -12,10 +12,10 @@ class EuiForm extends CActiveForm
 	 */
 	public function validateBox($model,$attribute,$options=array())
 	{
-		CHtml::resolveNameID($model,$attribute,$options);			
-		return $this->widget('ext.yii-easyui.widgets.EuiValidatebox', $options, true);			
+		CHtml::resolveNameID($model,$attribute,$options);
+		return $this->widget('ext.yii-easyui.widgets.EuiValidatebox', $options, true);
 	}
-	
+
 	/**
 	 * Renders a number field for a model attribute.
 	 * This method is a wrapper of {@link EuiNumberbox}.
@@ -29,10 +29,10 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiNumberbox', $options, true);
 	}
-	
+
 	/**
 	 * Renders a date field for a model attribute.
-	 * This method is a wrapper of {@link EuiDatebox}.	 
+	 * This method is a wrapper of {@link EuiDatebox}.
 	 * @param CModel $model the data model
 	 * @param string $attribute the attribute
 	 * @param array @param array $options widget options
@@ -43,7 +43,7 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiDatebox', $options, true);
 	}
-	
+
 	/**
 	 * Renders a datetime field for a model attribute.
 	 * This method is a wrapper of {@link EuiDatetimebox}.
@@ -57,7 +57,7 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiDatetimebox', $options, true);
 	}
-	
+
 	/**
 	 * Renders a numberspinner field for a model attribute.
 	 * This method is a wrapper of {@link EuiNumberspinner}.
@@ -71,7 +71,7 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiNumberspinner', $options, true);
 	}
-	
+
 	/**
 	 * Renders a datespinner field for a model attribute.
 	 * This method is a wrapper of {@link EuiTimespinner}.
@@ -85,7 +85,7 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiTimespinner', $options, true);
 	}
-	
+
 	/**
 	 * Renders a combobox field for a model attribute.
 	 * This method is a wrapper of {@link EuiNumberspinner}.
@@ -99,7 +99,7 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiCombobox', $options, true);
 	}
-	
+
 	/**
 	 * Renders a combogrid field for a model attribute.
 	 * This method is a wrapper of {@link EuiNumberspinner}.
@@ -109,11 +109,11 @@ class EuiForm extends CActiveForm
 	 * @return string the generated input field
 	 */
 	public function comboGrid($model,$attribute,$options=array())
-	{		
+	{
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiCombogrid', $options, true);
 	}
-	
+
 	/**
 	 * Renders a combogrid field for a model attribute.
 	 * This method is a wrapper of {@link EuiNumberspinner}.
@@ -127,7 +127,7 @@ class EuiForm extends CActiveForm
 		CHtml::resolveNameID($model,$attribute,$options);
 		return $this->widget('ext.yii-easyui.widgets.EuiCombotree', $options, true);
 	}
-	
+
 
 	public function init()
 	{
@@ -141,7 +141,7 @@ class EuiForm extends CActiveForm
 		else
 			echo CHtml::beginForm($this->action, $this->method, $this->htmlOptions);
 	}
-	
+
 	/**
 	 * Runs the widget.
 	 * This registers the necessary javascript code and renders the form close tag.
@@ -149,10 +149,10 @@ class EuiForm extends CActiveForm
 	public function run()
 	{
 		echo CHtml::endForm();
-		
+
 		if(is_array($this->focus))
 			$this->focus="#".CHtml::activeId($this->focus[0],$this->focus[1]);
-				
+
 		if($this->focus!==null)
 		{
 			Yii::app()->clientScript->registerScript('EuiForm#focus',"
@@ -160,7 +160,7 @@ class EuiForm extends CActiveForm
 					$('".$this->focus."').focus();
 			");
 		}
-			
+
 	}
 }
 

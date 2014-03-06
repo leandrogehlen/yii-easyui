@@ -3,46 +3,46 @@
 Yii::import('ext.yii-easyui.widgets.EuiContainer');
 Yii::import('ext.yii-easyui.widgets.EuiMenuitem');
 
-class EuiMenu extends EuiContainer 
-{	
-	/**	 
+class EuiMenu extends EuiContainer
+{
+	/**
 	 * @var number	Menu z-index style,increase from it.
 	 */
-	public $zIndex;	
-	
-	/**	 
+	public $zIndex;
+
+	/**
 	 * @var number	Menu left position.
 	 */
-	public $left;	
-	
-	
+	public $left;
+
+
 	/**
 	 * @var number Menu top position
 	 */
-	public $top;	
-	
-	/**	 
+	public $top;
+
+	/**
 	 * @var number The minimum width of menu.
 	 */
-	public $minWidth;	
-	
-	
+	public $minWidth;
+
+
 	protected function getCssClass()
 	{
 		return 'easyui-menu';
 	}
-	
-	public function getDefaultItemClass() 
+
+	public function getDefaultItemClass()
 	{
-		return 'EuiMenuitem';		
+		return 'EuiMenuitem';
 	}
 
 	public function init()
 	{
-		parent::init();		
+		parent::init();
 		echo CHtml::openTag('div', $this->toOptions())."\n";
 	}
-	
+
 	public function run()
 	{
 		parent::run();
