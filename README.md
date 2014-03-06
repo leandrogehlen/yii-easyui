@@ -8,9 +8,9 @@ The extension implements widgets for writing the componentes javascript.
 Including the resources
 ------------------------
 
-Download http://www.jeasyui.com/download/, extracting content in ```js/jquery-easyui```  
+Download http://www.jeasyui.com/download/, extracting content in ```js/jquery-easyui```
 Download [yii-easyui](https://github.com/leandrogehlen/yii-easyui/archive/master.zip) extracting content in ```protected/extensions```
-    
+
 Configuration
 -------------
 Is necessary that the controllers extends of class ```EuiController```
@@ -20,16 +20,16 @@ Yii::import('ext.yii-easyui.base.EuiController');
 
 class SiteController extends EuiController {
 
-    public function actionIndex() 
+    public function actionIndex()
     {
-	      $this->render('index');	
-    }	
+	      $this->render('index');
+    }
 }
 ```
 
 ####Important!
 
-The native css files used by [Yii](http://www.yiiframework.com) generate conflicts with [jQuery EasyUI](http://www.jeasyui.com)  
+The native css files used by [Yii](http://www.yiiframework.com) generate conflicts with [jQuery EasyUI](http://www.jeasyui.com)
 To avoid conflict **REMOVE** the following lines in ```protected/views/layouts/main.php```
 
 ```php
@@ -54,10 +54,10 @@ In view files is possible to write widget components to render JQuery Easyui for
 $this->widget('ext.yii-easyui.widgets.EuiWindow', array(
 	'id' => 'win',
 	'title' => 'My Window',
-	'style' => 'width:500px;height:250px;padding:10px;'			
+	'style' => 'width:500px;height:250px;padding:10px;'
 ));
 
-``` 
+```
 
 Results:
 

@@ -2,9 +2,9 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiControl');
 
-class EuiAccordion extends EuiControl 
-{		
-	
+class EuiAccordion extends EuiControl
+{
+
 	protected function getCssClass()
 	{
 		return 'easyui-accordion';
@@ -14,8 +14,8 @@ class EuiAccordion extends EuiControl
 	{
 		echo CHtml::openTag('div', $this->toOptions())."\n";
 	}
-	
-	
+
+
 	public function run()
 	{
 		echo CHtml::closeTag('div')."\n";
