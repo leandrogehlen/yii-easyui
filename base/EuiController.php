@@ -11,36 +11,7 @@ class EuiController extends CController {
 	public function init()
 	{
 		EuiJavaScript::registerCoreScripts();
-	}
-
-	/**
-	 * Applies LIMIT, OFFSET and ORDER to the specified query criteria.
-	 * @param CDbCriteria $criteria The query criteria that should be applied restrictions
-	 * @param CActiveRecord $model The model that will execute criteria
-	 */
-	protected function prepareList($model, $criteria)
-	{
-		if (isset($_REQUEST['rows']))
-		{
-			$criteria->limit = $_REQUEST['rows'];
-			$criteria->offset = ($_REQUEST['page']-1) * $criteria->limit;
-		}
-
-		if (isset($_REQUEST['sort']))
-		{
-			$sort = $_REQUEST['sort'];
-			if ($model->hasAttribute($sort))
-				$criteria->order = $model->getTableAlias(true).'.'.$sort;
-			else {
-				$tokens = split('_', $sort);
-				$order = array_pop($tokens);
-				$alias = array_pop($tokens);
-
-				$criteria->order = $alias.'.'.$order;
-			}
-			$criteria->order .= ' '.$_REQUEST['order'];
-		}
-	}
+	}	
 
 	/**
 	 * Exports an model to a special readable JSON to work with formulários
@@ -63,20 +34,27 @@ class EuiController extends CController {
 	 * Exports an array to a special readable JSON object.
 	 * <p>The $total parameter indicates the total number of records. This is useful is case of pagination where
 	 * the total number of records is needed by the control to create the correct pagination<br/>
-	 * @param array $data the array to generate a JSON object from it
+	 * @param array|IDataProvider $data the data to generate a JSON object from it
 	 * @param int $total total number of records in the entire data-source
 	 * @return string Data representation in JSON format
 	 */
 	public function exportData($data, $total=null)
-	{
+	{	
 		$exports = array();
+		$model = null;
+		
+		if ($data instanceof IDataProvider)
+		{
+			$total = $data->getTotalItemCount();
+			$data = $data->getData();		
+		}		
 
 		if (is_object($data))
 			$model = $data;
 		else if (is_array($data) && !empty($data))
 			$model = current($data);
 
-		if ($model instanceof CActiveRecord && method_exists($model, 'attributeExports'))
+		if ($model !== null && $model instanceof CActiveRecord && method_exists($model, 'attributeExports'))
 		{
 			$attrs = $model->attributeExports();
 

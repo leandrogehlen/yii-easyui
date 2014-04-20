@@ -37,9 +37,12 @@ class EuiJavaScript
 
 	public static function registerCrudScripts()
 	{
-		$path = Yii::getPathOfAlias('ext.yii-easyui.assets.js');
-		$url = Yii::app()->getAssetManager()->publish($path.'/jquery.crud.js');
-		Yii::app()->getClientScript()->registerScriptFile($url);
+		$path = Yii::getPathOfAlias('ext.yii-easyui.assets');
+		
+		$am = Yii::app()->getAssetManager();
+		$cs = Yii::app()->getClientScript();
+								
+		$cs->registerScriptFile($am->publish($path.'/js/jquery.crud.js'));		
 	}
 
 

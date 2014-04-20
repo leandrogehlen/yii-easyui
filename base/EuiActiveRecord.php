@@ -1,10 +1,9 @@
 <?php
 
-/**
- * @property integer id
- * @author leandro
- */
-abstract class ActiveRecordBase extends CActiveRecord {
+Yii::import('ext.yii-easyui.base.data.EuiActiveDataProvider');
+
+
+abstract class EuiActiveRecord extends CActiveRecord {
 
 	/**
 	 * Returns the name of the associated database table.
@@ -62,18 +61,24 @@ abstract class ActiveRecordBase extends CActiveRecord {
 	public function search($value)
 	{
 		$criteria = $this->getCriteriaSearch();
-		if (!empty($value))
+		
+		$attributes = $this->getSearchAttributeNames();
+		foreach ($attributes as $attr)
 		{
-			$attributes = $this->getSearchAttributeNames();
-			foreach ($attributes as $attr)
+			$column = self::getColumnByAttributeName($this, $attr);
+			if (isset($column))
 			{
-				$column = self::getColumnByAttributeName($this, $attr);
-				if (isset($column))
+				$search = $value;
+				if (strpos($attr, '.'))
 				{
-					$search = $value;
-					if (!strpos($attr, '.'))
-						$attr = $this->getTableAlias(true).'.'.$attr;
+					$tokens = explode('.', $attr);
+					array_pop($tokens);
+					
+					$criteria->with = implode('.', $tokens); 						
+				} else 
+					$attr = $this->getTableAlias(true).'.'.$attr;												
 
+				if (!empty($search)) {
 					if ($column->type == 'integer' || $column->type == 'double')
 					{
 						if (is_numeric($search))
@@ -82,16 +87,19 @@ abstract class ActiveRecordBase extends CActiveRecord {
 							{
 								case 'integer': $search = (int)$value;break;
 								case 'double': $search = (double)$value;break;
-							}
+							}											
 							$criteria->compare($attr, $search, false, 'OR');
 						}
 					}
-					else
+					else if (!empty($search))
 						$criteria->compare("LOWER({$attr})", $search, $column->type == 'string', 'OR');
 				}
 			}
 		}
-		return $criteria;
+		
+		return new EuiActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));				
 	}
 
 	/**

@@ -173,5 +173,12 @@ Crud.prototype = {
 					that.showErrors(data);
 			}
 		});
+	},
+	
+	search: function(value) {	
+		var grid = this.options.grid;
+		grid.datagrid('clearSelections');				
+		grid.datagrid('options').queryParams = {'__q': value};		
+		grid.datagrid('load');		
 	}
 };
