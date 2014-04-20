@@ -1,6 +1,6 @@
 <?php
 
-Yii::import('ext.yii-easyui.base.data.EuiActiveDataProvider');
+Yii::import('ext.yii-easyui.data.EuiActiveDataProvider');
 
 
 abstract class EuiActiveRecord extends CActiveRecord {

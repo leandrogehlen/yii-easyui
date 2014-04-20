@@ -1,8 +1,8 @@
 <?php
 
 Yii::import('system.web.CActiveDataProvider');
-Yii::import('ext.yii-easyui.base.data.EuiPagination');
-Yii::import('ext.yii-easyui.base.data.EuiSort');
+Yii::import('ext.yii-easyui.data.EuiPagination');
+Yii::import('ext.yii-easyui.data.EuiSort');
 
 class EuiActiveDataProvider extends CActiveDataProvider
 {
