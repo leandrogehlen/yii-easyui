@@ -28,29 +28,17 @@ abstract class EuiActiveRecord extends CActiveRecord {
 	 * Returns the query criteria associated with this model used by {@link search()}
 	 * @return CDbCriteria
 	 */
-	protected function getCriteriaSearch()
+	protected function getSearchCriteria()
 	{
 		return $this->getDbCriteria();
 	}
 
 	/**
-	 * Returns the attribute names that used in search
-	 * @return array search attribute names
+	 * Returns the field names that used in search
+	 * @return array search field names
 	 */
-	public function getSearchAttributeNames()
+	public function searchAttributes()
 	{
-		foreach ($this->rules() as $rule)
-		{
-			if(isset($rule[0],$rule[1],$rule['on']))
-			{
-				$attributes = $rule[0];
-				if(is_string($attributes) && $rule[1] = 'safe' && is_string($rule['on']))
-				{
-					if ($rule['on'] == 'search')
-						return preg_split('/[\s,]+/',$attributes,-1,PREG_SPLIT_NO_EMPTY);
-				}
-			}
-		}
 		return array();
 	}
 
@@ -60,9 +48,9 @@ abstract class EuiActiveRecord extends CActiveRecord {
 	 */
 	public function search($value)
 	{
-		$criteria = $this->getCriteriaSearch();
+		$criteria = $this->getSearchCriteria();
 		
-		$attributes = $this->getSearchAttributeNames();
+		$attributes = $this->searchAttributes();
 		foreach ($attributes as $attr)
 		{
 			$column = self::getColumnByAttributeName($this, $attr);
