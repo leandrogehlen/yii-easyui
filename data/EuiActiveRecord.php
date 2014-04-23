@@ -48,9 +48,10 @@ abstract class EuiActiveRecord extends CActiveRecord {
 	 */
 	public function search($value)
 	{
-		$criteria = $this->getSearchCriteria();
+	    $with = array();
+		$criteria = $this->getSearchCriteria();		
+		$attributes = $this->searchAttributes();		
 		
-		$attributes = $this->searchAttributes();
 		foreach ($attributes as $attr)
 		{
 			$column = self::getColumnByAttributeName($this, $attr);
@@ -61,8 +62,7 @@ abstract class EuiActiveRecord extends CActiveRecord {
 				{
 					$tokens = explode('.', $attr);
 					array_pop($tokens);
-					
-					$criteria->with = implode('.', $tokens); 						
+					$with[] = implode('.', $tokens);					 						
 				} else 
 					$attr = $this->getTableAlias(true).'.'.$attr;												
 
@@ -84,6 +84,8 @@ abstract class EuiActiveRecord extends CActiveRecord {
 				}
 			}
 		}
+		
+		$criteria->with = $with;
 		
 		return new EuiActiveDataProvider($this, array(
 			'criteria'=>$criteria,
