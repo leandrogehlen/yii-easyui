@@ -1,7 +1,7 @@
 <?php
 
 Yii::import('ext.yii-easyui.widgets.EuiContainer');
-Yii::import('ext.yii-easyui.widgets.EuiMenuitem');
+Yii::import('ext.yii-easyui.widgets.EuiMenuItem');
 
 class EuiMenu extends EuiContainer
 {
@@ -34,7 +34,7 @@ class EuiMenu extends EuiContainer
 
 	public function getDefaultItemClass()
 	{
-		return 'EuiMenuitem';
+		return 'EuiMenuItem';
 	}
 
 	public function init()

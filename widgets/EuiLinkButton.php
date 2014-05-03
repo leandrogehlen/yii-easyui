@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiButton');
 
-class EuiLinkbutton extends EuiButton
+class EuiLinkButton extends EuiButton
 {
 	public $url = '#';
 

@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiContainer');
 
-class EuiMenuitem extends EuiContainer
+class EuiMenuItem extends EuiContainer
 {
 
 	/**

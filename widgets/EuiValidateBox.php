@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiControl');
 
-class EuiValidatebox extends EuiControl
+class EuiValidateBox extends EuiControl
 {
 	/**
 	 * @var string Defines attribute name of input

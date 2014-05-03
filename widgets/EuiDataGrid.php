@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiControl');
 Yii::import('ext.yii-easyui.widgets.EuiDataColumn');
-Yii::import('ext.yii-easyui.widgets.EuiLinkbutton');
+Yii::import('ext.yii-easyui.widgets.EuiLinkButton');
 
 class EuiDataGrid extends EuiControl
 {
@@ -187,7 +187,7 @@ class EuiDataGrid extends EuiControl
 			$tbar = array();
 			foreach ($this->toolbar as $key => $value)
 			{
-				$item = $this->prepareConfig($value, 'EuiLinkbutton');
+				$item = $this->prepareConfig($value, 'EuiLinkButton');
 				$item = Yii::createComponent($item, $this);
 				$item->init();
 

@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiWidget');
 
-class EuiCombotree extends EuiWidget {
+class EuiComboTree extends EuiWidget {
 
 	/**
 	 * @var string Defines attribute name of input

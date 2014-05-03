@@ -1,7 +1,7 @@
 <?php
 
 Yii::import('ext.yii-easyui.widgets.EuiControl');
-Yii::import('ext.yii-easyui.widgets.EuiTabpanel');
+Yii::import('ext.yii-easyui.widgets.EuiTabPanel');
 
 class EuiTabs extends EuiControl {
 

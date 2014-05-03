@@ -13,7 +13,7 @@ class EuiForm extends CActiveForm
 	public function validateBox($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiValidatebox', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiValidateBox', $options, true);
 	}
 
 	/**
@@ -27,7 +27,7 @@ class EuiForm extends CActiveForm
 	public function numberBox($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiNumberbox', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiNumberBox', $options, true);
 	}
 
 	/**
@@ -41,7 +41,7 @@ class EuiForm extends CActiveForm
 	public function dateBox($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiDatebox', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiDateBox', $options, true);
 	}
 
 	/**
@@ -55,7 +55,7 @@ class EuiForm extends CActiveForm
 	public function dateTimeBox($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiDatetimebox', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiDatetimeBox', $options, true);
 	}
 
 	/**
@@ -69,7 +69,7 @@ class EuiForm extends CActiveForm
 	public function numberSpinner($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiNumberspinner', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiNumberSpinner', $options, true);
 	}
 
 	/**
@@ -83,7 +83,7 @@ class EuiForm extends CActiveForm
 	public function timeSpinner($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiTimespinner', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiTimeSpinner', $options, true);
 	}
 
 	/**
@@ -97,7 +97,7 @@ class EuiForm extends CActiveForm
 	public function comboBox($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiCombobox', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiComboBox', $options, true);
 	}
 
 	/**
@@ -111,7 +111,7 @@ class EuiForm extends CActiveForm
 	public function comboGrid($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiCombogrid', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiComboGrid', $options, true);
 	}
 
 	/**
@@ -125,7 +125,7 @@ class EuiForm extends CActiveForm
 	public function comboTree($model,$attribute,$options=array())
 	{
 		CHtml::resolveNameID($model,$attribute,$options);
-		return $this->widget('ext.yii-easyui.widgets.EuiCombotree', $options, true);
+		return $this->widget('ext.yii-easyui.widgets.EuiComboTree', $options, true);
 	}
 
 

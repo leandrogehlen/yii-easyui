@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiDataGrid');
 
-class EuiTreegrid extends EuiDataGrid
+class EuiTreeGrid extends EuiDataGrid
 {
 
 	/**

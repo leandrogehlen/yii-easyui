@@ -1,8 +1,8 @@
 <?php
 
-Yii::import('ext.yii-easyui.widgets.EuiValidatebox');
+Yii::import('ext.yii-easyui.widgets.EuiValidateBox');
 
-class EuiDatebox extends EuiValidatebox
+class EuiDateBox extends EuiValidateBox
 {
 
 	/**

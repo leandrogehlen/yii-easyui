@@ -2,7 +2,7 @@
 
 Yii::import('ext.yii-easyui.widgets.EuiControl');
 
-class EuiTabpanel extends EuiControl
+class EuiTabPanel extends EuiControl
 {
 	/**
 	 * @var string The title text to display in the tab
