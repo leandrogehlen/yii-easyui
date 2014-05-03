@@ -118,6 +118,16 @@ class EuiPanel extends EuiControl
 	 * @var string Define the id element content buttons
 	 */
 	public $buttons;
+	
+	/**
+	 * @var boolean	Set to true to expand the panel
+	 */
+	public $selected;
+	
+	/**
+	 * @var boolean	Defines if is the internal panel
+	 */
+	public $internal = false;
 
 	/**
 	 * (non-PHPdoc)
@@ -130,7 +140,12 @@ class EuiPanel extends EuiControl
 
 	public function init()
 	{
-		echo CHtml::openTag('div', $this->toOptions())."\n";
+	    $options = $this->toOptions();
+	    
+	    if ($this->internal)
+            unset($options['class']);           
+	    
+		echo CHtml::openTag('div', $options)."\n";
 	}
 
 
